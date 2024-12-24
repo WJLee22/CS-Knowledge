@@ -1,2 +1,5 @@
-# CS-Knowledge
-Collection of computer science knowledge and resources
+# 🏫 컴퓨터공학부 전공 지식 저장소
+
+### 📚 자바 튜터활동, 디자인 패턴, 시스템프로그래밍, 네트워크프로그래밍 등
+
+### 📂 각 과목별 폴더로 구성
