@@ -1,25 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
     <!-- 스프링 컨테이너의 동작을 정의하는 config xml 파일 -->
     <!-- id가 dogId인 Dog클래스의 인스턴스(bean)가 스프링 컨테이너 안에 생성 -->
     <bean id="dogId" class="kr.ac.hansung.cse.animals.Dog">
         <!-- Dog 클래스의 myName이라는 setter메서드에 인자값으로 "poodle" 문자열 전달 -->
         <property name="myName" value="poodle"/>
+        <qualifier value="qf_dog"/> <!--qualifier태그를 통해 Autowired가 동타입 객체들 중 선택하지 못하는 문제 해결. qualifier태그의 value 속성값이 qf_dog인 빈을 선택하도록 지시 -->
+
     </bean>
 
     <bean id="catId" class="kr.ac.hansung.cse.animals.Cat">
         <!-- Cat 클래스의 myName이라는 setter메서드에 인자값으로 "bella" 문자열 전달 -->
         <property name="myName" value="bella"/>
+        <qualifier value="qf_cat"/> <!--qualifier태그를 통해 Autowired가 동타입 객체들 중 선택하지 못하는 문제 해결. qualifier태그의 value 속성값이 qf_cat인 빈을 선택하도록 지시 -->
     </bean>
 
     <bean id="petOwnerId" class="kr.ac.hansung.cse.animals.PetOwner">
-        <!-- PetOwner 클래스의 생성자 메서드에 인자값으로 id가 dogId인 빈의 레퍼런스를 전달 -->
-        <!-- 이로써 PetOwner 빈의 animal 필드 값은 이름이 catId인 빈. -->
-        <!-- property 태그는 setter메서드 호출이고, constructor-arg 태그는 생성자 호출 -->
-        <constructor-arg ref="dogId"/>
+        <!-- @Autowired 어노테이션으로 인해, constructor-arg태그를 통한 생성자 인자전달 필요x -->
+        <!--<constructor-arg ref="dogId"/>-->
     </bean>
-
+    <!-- 어노테이션 기반의 DI를 사용하기 위해 context:annotation-config 태그를 추가 -->
+    <context:annotation-config/>
 </beans>
