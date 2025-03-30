@@ -22,6 +22,7 @@
         <beans:property name="suffix" value=".jsp" />
     </beans:bean>
 
+    <!-- DispatcherServlet이 이 servlet-context.xml파일을 읽어들임 -->
     <!-- kr.ac.hansung.cse.controller를 스캔하여 @Controller 어노테이션이 붙은 클래스를 빈으로 등록하여 스프링 컨테이너에 집어넣음  -->
     <context:component-scan base-package="kr.ac.hansung.cse.controller" />
 

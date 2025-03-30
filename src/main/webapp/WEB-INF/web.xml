@@ -7,10 +7,16 @@
 
     <!-- The definition of the Root Spring Container shared by all Servlets
         and Filters -->
+    <!-- DispatcherServlet은 servlet-context.xml을 읽어들이고,
+         ContextLoaderListener는 root-context.xml & dao-context.xml & service-context.xml을 읽어들이고 그xml들이 실행되겠지
+     -->
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>
             /WEB-INF/spring/root-context.xml
+            <!--ContextLoaderListener가 추가로 dao-context.xml & service-context.xml을 읽어들이도록 함. 그러면 dao-context.xml & service-context.xml에 작성된대로 dao & service 패키지 내의 클래스들을 스캔하여 자동으로 빈들을 생성하겠지  -->
+            /WEB-INF/spring/appServlet/dao-context.xml
+            /WEB-INF/spring/appServlet/service-context.xml
         </param-value>
     </context-param>
 
