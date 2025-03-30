@@ -20,6 +20,13 @@
     </listener>
 
     <!-- Processes application requests -->
+    <!--과정 총정리 -->
+    <!-- 1. DispatcherServlet이 servlet-context.xml파일을 읽어들임 -->
+    <!-- 2. servlet-context.xml파일에서는 kr.ac.hansung.cse.controller패키지를 스캔하여 @Controller가 붙은 클래스들을 빈으로 생성해서 스프링 컨테이너에 넣어줌 -->
+    <!-- 이 예제에서는 kr.ac.hansung.cse.controller패키지안의 HomeController 클래스가 @Controller가 붙었으므로 HomeController클래스를 빈으로 생성하고 컨테이너에 넣음 -->
+    <!-- 3. 추후에 클라이언트로부터 get방식으로/ 루트경로 요청이오면 HomeController클래스의 @GetMapping어노테이션이 붙은 메서드가 호출-실행됨 -->
+    <!-- 4. @GetMapping어노테이션이 붙은 메서드가 실행되면 Model객체에 데이터(객체)를 담고(모델 객체안에 모델Attribute로써 객체가 저장됨), return문에 적힌 logical View, 즉 해당 이름의 뷰에게 Model을 넘겨주면서 해당 뷰를 호출함  -->
+    <!-- 5. 해당 뷰는 모델안의 데이터를 이용하여 view(HTML)를 동적으로 생성후 클라이언트에게 응답으로 전달!-->
     <servlet>
         <servlet-name>appServlet</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
