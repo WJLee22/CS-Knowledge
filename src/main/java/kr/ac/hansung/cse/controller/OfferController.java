@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -15,14 +16,14 @@ public class OfferController {
     //so, 컨트롤러가 Service를 호출하기 위해서, Service를 의존성 주입받아야 함.
     // @Autowired로 의존성 주입을 받는다. 추후에 Spring이 자동으로 OfferService라는 빈을 offerService필드에다가 빈(객체)을 생성-주입해준다.
 
-/*    의존성 주입 흐름
-    Spring은 애플리케이션 시작 시 컴포넌트 스캔을 수행.
+    /*    의존성 주입 흐름
+        Spring은 애플리케이션 시작 시 컴포넌트 스캔을 수행.
 
-    @Controller가 붙은 OfferController와 @Service가 붙은 OfferService를 발견하고, 각각을 싱글톤 빈으로 생성.
-            (기본적으로 싱글톤 스코프로 관리.)
+        @Controller가 붙은 OfferController와 @Service가 붙은 OfferService를 발견하고, 각각을 싱글톤 빈으로 생성.
+                (기본적으로 싱글톤 스코프로 관리.)
 
-    OfferController의 @Autowired 필드(offerService)에 Spring이 컨테이너 내 존재하는 OfferService 빈을 자동으로 주입.
-    */
+        OfferController의 @Autowired 필드(offerService)에 Spring이 컨테이너 내 존재하는 OfferService 빈을 자동으로 주입.
+        */
     @Autowired
     private OfferService offerService;
 
@@ -39,4 +40,23 @@ public class OfferController {
         return "offers";
     }
 
+    @GetMapping("/createoffer")
+    // 이러면, 모델 객체를 스프링에서 자동으로 생성해주고, 그 모델안에 하나의 속성으로 offer라는 키값으로 Offer객체를 넣어준다.
+    // 그리고 이 모델 객체는 createoffer라는 이름의 view로 전달되고, 이 Offer객체는 createoffer.html에서 사용된다.
+    public String createOffer(Model model) {
+        model.addAttribute("offer", new Offer());
+        return "createoffer";
+    }
+
+    @PostMapping("/docreate")
+    public String doCreate(Model model, Offer offer) {
+        // (Spring Data Binding) 이 메서드는 createoffer.html에서 form으로 전달된 데이터(name, email...)들을 Offer 객체의 필드에 자동으로 바인딩해준다.
+        // 그 후, 서비스 계층을 통해서 DB에 데이터를 저장한다.
+        // Controller -> Service -> DAO -> DB
+        offerService.insertOffer(offer);
+
+        return "offercreated";
+    }
+
 }
+
