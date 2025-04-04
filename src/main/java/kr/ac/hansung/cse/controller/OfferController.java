@@ -1,10 +1,13 @@
 package kr.ac.hansung.cse.controller;
 
+import jakarta.validation.Valid;
 import kr.ac.hansung.cse.model.Offer;
 import kr.ac.hansung.cse.service.OfferService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -44,15 +47,36 @@ public class OfferController {
     // 이러면, 모델 객체를 스프링에서 자동으로 생성해주고, 그 모델안에 하나의 속성으로 offer라는 키값으로 Offer객체를 넣어준다.
     // 그리고 이 모델 객체는 createoffer라는 이름의 view로 전달되고, 이 Offer객체는 createoffer.html에서 사용된다.
     public String createOffer(Model model) {
+        //왜 비어있는 Offer객체를 모델에 담아주냐면, createoffer.html에서 비어있는 초기상태의 폼 태그를 만들기 위해서이다.
         model.addAttribute("offer", new Offer());
         return "createoffer";
     }
 
     @PostMapping("/docreate")
-    public String doCreate(Model model, Offer offer) {
+    // @valid 어노테이션을 사용자가 웹폼에 입력한 데이터가 바인딩되는 객체 앞에 붙여주면, "야 스프링. 이거 검증해줘"라는 의미.
+    // 그 검증 결과는 BindingResult 객체에 담긴다.
+    // 다만, 검증은 스프링에서 해주긴하다만 - 검증되는 그 검증기준은 개발자가 직접 설정해야 한다. Offer 모델 어트리뷰트 클래스에서 각 필드에 @NotNull, @Size, @Email 같은 constraint, 즉 제약조건 어노테이션을 붙여주면 된다.
+    // 그럼 그 설정된 제약조건에 따라서 스프링이 검증을 해준다.
+    public String doCreate(Model model, @Valid Offer offer, BindingResult result) {
+
+        if(result.hasErrors()) {
+            System.out.println("== Form data does not validated. ==");
+
+            // 사용자의 입력에 존재하는 모든 애러를 가져온다.
+            List<ObjectError> errors = result.getAllErrors();
+
+            for(ObjectError error : errors) {
+                // 검증기준 어노테이션쪽에 기입해둔 애러 message 매개변수 값이 여기서 출력된다.
+                System.out.println(error.getDefaultMessage());
+            }
+            // 검증한 결과, 이 사용자의 입력에 에러가 있다면 createoffer.html로 다시 돌아가세요~!
+            return "createoffer";
+        }
+
         // (Spring Data Binding) 이 메서드는 createoffer.html에서 form으로 전달된 데이터(name, email...)들을 Offer 객체의 필드에 자동으로 바인딩해준다.
         // 그 후, 서비스 계층을 통해서 DB에 데이터를 저장한다.
         // Controller -> Service -> DAO -> DB
+        // 검증 결과, 에러가 없으면 이제 DB에 저장하는 로직을 수행한다.
         offerService.insertOffer(offer);
 
         return "offercreated";
