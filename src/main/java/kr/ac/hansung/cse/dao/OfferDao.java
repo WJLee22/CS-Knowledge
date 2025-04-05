@@ -1,16 +1,57 @@
 package kr.ac.hansung.cse.dao;
-import kr.ac.hansung.cse.model.Offer;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
-import org.springframework.stereotype.Repository;
 
-import javax.sql.DataSource;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import kr.ac.hansung.cse.model.Offer;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 
-@Repository //16:22
+@Repository
+@Transactional
+public class OfferDao {
+
+    // EntityManager를 의존성 주입받기 위해 @PersistenceContext 어노테이션 사용
+    @PersistenceContext
+    private EntityManager entityManager;
+
+    public Offer getOffer(String name) {
+        // JPQL을 사용하여 조건 쿼리문 생성 & 실행 -> name으로 Offer 객체를 조회
+        // o 는 Offer 객체를 의미. 별칭임.
+        return entityManager.createQuery("SELECT o FROM Offer o WHERE o.name = :name", Offer.class)
+                // named parameter: 이름이 name인 파라미터 세팅
+                .setParameter("name", name)
+                .getSingleResult();
+    }
+
+    public Offer getOffer(int id) {
+        return entityManager.find(Offer.class, id);
+    }
+
+    public List<Offer> getOffers() {
+        return entityManager.createQuery("SELECT o FROM Offer o", Offer.class)
+                .getResultList();
+    }
+
+    public void insert(Offer offer) {
+        entityManager.persist(offer);
+    }
+
+    public void update(Offer offer) {
+        entityManager.merge(offer);
+    }
+
+
+    public void delete(int id) {
+        Offer offer = entityManager.find(Offer.class, id);
+        if (offer != null) {
+            entityManager.remove(offer);
+        }
+    }
+
+}
+/*@Repository //16:22
 public class OfferDao {
  private JdbcTemplate jdbcTemplate;
 
@@ -97,4 +138,4 @@ public class OfferDao {
         return (jdbcTemplate.update(sqlStatement, new Object[] {id}) == 1);
     }
 
-}
+}*/
