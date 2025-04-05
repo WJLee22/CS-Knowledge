@@ -1,2 +1,2 @@
-# SpringRepo_Week4
-Spring Web Form
+# SpringRepo_Week5
+JPA(Java Persistence API)
