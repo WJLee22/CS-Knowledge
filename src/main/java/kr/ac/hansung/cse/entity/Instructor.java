@@ -31,12 +31,12 @@ public class Instructor {
     @OneToMany(mappedBy = "instructor", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
 private List<Course> courses = new ArrayList<>();
 
-/*    // OneToOne 관계 설정.
+    // OneToOne 관계 설정.
     // InstructorDetail 엔티티와 Instructor 엔티티는 1:1 관계를 가짐.
     // 지금 이 Instructor 엔티티는 InstructorDetail 엔티티를 외래키로 참조-가리키고 있음.
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "instructor_detail_id")
-    private InstructorDetail instructorDetail;*/
+    private InstructorDetail instructorDetail;
 
     public Instructor(String fullName, String email) {
         this.fullName = fullName;
