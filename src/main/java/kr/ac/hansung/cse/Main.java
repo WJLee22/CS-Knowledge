@@ -6,7 +6,8 @@ import kr.ac.hansung.cse.entity.Course;
 import kr.ac.hansung.cse.entity.Instructor;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-// One-to-Many Bidirectional
+// Bidirectional: 데이터베이스 상에서는 단방향으로 저장되지만, 이 객체지향 프로그래밍(ORM)에서는 논리적으로 양방향으로 참조할 수 있는 구조이다.
+// One-to-Many Bidirectional: 어느쪽에서든 상대편을 참조할 수 있는 구조이기에 쉽게 상대편을 참조하여 쉽게 정보를 가져올 수 있다는 장점이있다.
 public class Main {
     public static void main(String[] args) {
         ClassPathXmlApplicationContext context =
