@@ -30,7 +30,11 @@ public class Main {
         // 자, 근데 아까 cascade=CascadeType.ALL 옵션을 줬었지? 그렇다면 이 findById로 DB에서 select했을 때 연관된 Course 엔티티들도 함께 조회가 될까? 안될까?
         // -> 안된다. 왜냐면 fetch = FetchType.LAZY 옵션을 줬기에 같이 조회되는것이 아니라 추후 직접 요청시에 조회됨.
         // 암튼 courses를 찾지못한채 이 트랜잭션이 끝나기때문에 일단 엔티티메니저는 닫힌 상태.
-        Instructor retrievedInstructor = instructorDao.findById(instructor1.getId());
+        //Instructor retrievedInstructor = instructorDao.findById(instructor1.getId());
+        
+        // findByIdWithCourses 메서드로 instructor1을 조회하면 courses 컬렉션이 cascade 로드됨.
+        // 하나의 findByIdWithCourses 트랜잭션 안에서 find로 엔티티를 조회한 후, 그 엔티티의 getCourses()를 호출하여 courses 컬렉션을 실제참조하여 lazy fetch가 이루어져 courses가 성공적으로 로드되어짐.
+        Instructor retrievedInstructor = instructorDao.findByIdWithCourses(instructor1.getId());
         System.out.println("Instructor: " + retrievedInstructor.getFullName());
         // 엔티티메니저가 닫힌 상태 + courses 리스트는 null인 상태에서 courses를 조회하면 courses 정보를 찾을수없어서 LazyInitializationException 발생.
         for (Course Course : retrievedInstructor.getCourses()) {
