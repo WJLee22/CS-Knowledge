@@ -59,18 +59,17 @@ public class Main {
         // fetch가 lazy타입이라 student 읽어들일때 course까지 읽어오지않음. so, findByIdWithCourses메서드로 하나의 트랜잭션 내에서 course 참조 후 cascading 조회.
         Student storedStudent = studentDao.findByIdWithCourses(student3.getId());
 
-        System.out.println(" Retrieved Student: " + storedStudent.getFullName());
+        // 콘솔 출력 방법
+ /*       System.out.println(" Retrieved Student: " + storedStudent.getFullName());
         storedStudent.getCourses().forEach(
                 course -> System.out.println("   ➤ Enrolled in: " + course.getTitle())
+        );*/
+        // 로깅 출력 방법
+        logger.info(" Retrieved Student: " + storedStudent.getFullName());
+        storedStudent.getCourses().forEach(
+                course -> logger.info("   ➤ Enrolled in: {}", course.getTitle())
         );
 
-        // 로거의 레벨 우선순위(낮은->높은순): TRACE < DEBUG < INFO < WARN < ERROR
-        // logger의 레벨이 DEBUG로 설정되어있으니깐 이보다 우선순위가 낮은 TRACE레벨의 로그는 출력되지않고, DEBUG레벨 이상의 로그는 출력됨.
-        logger.trace("This is a trace level message");
-        logger.debug("This is a debug level message");
-        logger.info("This is a info level message");
-        logger.warn("This is a warn level message");
-        logger.error("This is a error level message");
     }
 }
 

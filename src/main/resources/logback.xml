@@ -13,7 +13,7 @@
     <appender name="DAILY_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>logs/rest-demo.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <!--dd: 일별로 새로 로그 파일이 생성되고 그 파일로 로그 출력 타겟이 변경됨. -->
+            <!--dd: 일별로 새로 로그 파일이 생성되고 그 파일로 로그 출력 타겟이 변경됨. 하루 지나면 로깅파일이름 뒤에 해당 날짜가 붙을거임  -->
             <fileNamePattern>logs/rest-demo.%d{yyyy-MM-dd}.log</fileNamePattern>
             <!--최대 30일동안 기록. 30일이 지나면 지움 -->
             <maxHistory>30</maxHistory>

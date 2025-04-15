@@ -2,3 +2,7 @@
 2025-04-16 04:49:49.895 [main] INFO  kr.ac.hansung.cse.Main - This is a info level message
 2025-04-16 04:49:49.895 [main] WARN  kr.ac.hansung.cse.Main - This is a warn level message
 2025-04-16 04:49:49.895 [main] ERROR kr.ac.hansung.cse.Main - This is a error level message
+2025-04-16 05:02:17.905 [main] INFO  kr.ac.hansung.cse.Main -  Retrieved Student: Charlie
+2025-04-16 05:02:17.906 [main] INFO  kr.ac.hansung.cse.Main -    ➤ Enrolled in: 정보보안
+2025-04-16 05:02:17.906 [main] INFO  kr.ac.hansung.cse.Main -    ➤ Enrolled in: 웹서버프로그래밍
+2025-04-16 05:02:17.906 [main] INFO  kr.ac.hansung.cse.Main -    ➤ Enrolled in: 클라우드컴퓨팅
