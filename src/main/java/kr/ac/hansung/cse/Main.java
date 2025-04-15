@@ -5,12 +5,23 @@ import kr.ac.hansung.cse.dao.InstructorDao;
 import kr.ac.hansung.cse.dao.StudentDao;
 import kr.ac.hansung.cse.entity.Course;
 import kr.ac.hansung.cse.entity.Student;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 import java.util.Arrays;
 import java.util.List;
 
 // Many-to-Many Unidirectional
 public class Main {
+
+    // 모든 로거들은 이름을 가지는 named logger이고, 이름이 있기에 계층구조로 이루어진다.
+    // logback.xml에서 kr.ac.hansung 로거의 레벨을 DEBUG로 설정했으니, 계층적으로 자식에 해당하는 kr.ac.hansung.cse.Main로거는 이 DEBUG레벨을 상속받게됨.
+    // so, kr.ac.hansung.cse.Main에서 발생하는 로그메시지의 레벨이 DEBUG 레벨이상인 경우에만 출력됨.
+    // Main.class를 이름으로주면 kr.ac.hansung.cse.Main로 로거의 이름이 설정됨.
+    //private static final Logger logger = LoggerFactory.getLogger(Main.class);
+    private static final Logger logger = LoggerFactory.getLogger("kr.ac.hansung.cse.Main");
+
     public static void main(String[] args) {
         ClassPathXmlApplicationContext context =
                 new ClassPathXmlApplicationContext("applicationContext.xml");
@@ -52,6 +63,14 @@ public class Main {
         storedStudent.getCourses().forEach(
                 course -> System.out.println("   ➤ Enrolled in: " + course.getTitle())
         );
+
+        // 로거의 레벨 우선순위(낮은->높은순): TRACE < DEBUG < INFO < WARN < ERROR
+        // logger의 레벨이 DEBUG로 설정되어있으니깐 이보다 우선순위가 낮은 TRACE레벨의 로그는 출력되지않고, DEBUG레벨 이상의 로그는 출력됨.
+        logger.trace("This is a trace level message");
+        logger.debug("This is a debug level message");
+        logger.info("This is a info level message");
+        logger.warn("This is a warn level message");
+        logger.error("This is a error level message");
     }
 }
 

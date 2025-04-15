@@ -1,0 +1,4 @@
+2025-04-16 04:49:49.894 [main] DEBUG kr.ac.hansung.cse.Main - This is a debug level message
+2025-04-16 04:49:49.895 [main] INFO  kr.ac.hansung.cse.Main - This is a info level message
+2025-04-16 04:49:49.895 [main] WARN  kr.ac.hansung.cse.Main - This is a warn level message
+2025-04-16 04:49:49.895 [main] ERROR kr.ac.hansung.cse.Main - This is a error level message
