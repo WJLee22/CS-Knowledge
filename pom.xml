@@ -72,6 +72,19 @@
             <scope>provided</scope>
         </dependency>
 
+        <!--SLF4J: simple Logging Facade for Java dependency -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>2.0.16</version>
+        </dependency>
+        <!-- 로그백에 대한 의존성 -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.5.10</version>
+        </dependency>
+
         <!-- Test (JUnit 5) -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
