@@ -27,7 +27,9 @@ public class Student {
     @Column(name = "email")
     private String email;
 
+    //cascade 미지정 & fetch타입도 미지정 -> default: none & Lazy
     @ManyToMany
+    // 2개의 테이블을 조인하는 다대다 관계. 2개의 외래키를 가지는 조인 테이블을 생성.
     @JoinTable(
             name = "student_course",
             joinColumns = @JoinColumn(name = "student_id"),
