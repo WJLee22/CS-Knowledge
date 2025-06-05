@@ -32,6 +32,7 @@
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
+            <!-- Use the latest version of Spring Boot Starter Thymeleaf -->
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
         <dependency>
@@ -67,6 +68,7 @@
             </plugin>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
+                <!--jar파일로 패키징 + jar 파일 실행시키는데 쓰이는 플러그인 -->
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
                     <excludes>
