@@ -13,4 +13,10 @@ SpringBoot outline
 - 생성된 `.jar`에는 작성한 코드, 의존성 라이브러리, 내장 톰캣이 포함된다.  
   - 작성한 코드: @RestController, @Service, @Entity, JPA, HTML, static/ 리소스 등 모든 .java → .class
   - 의존성 라이브러리: pom.xml에 정의된 의존성 라이브러리들(Hibernate, Spring Security, JPA, Jackson, Thymeleaf, Logback, 등등 .jar 형태로 BOOT-INF/lib에 포함)
-  - 내장 톰캣: Spring Boot는 내장 톰캣을 제공하여 별도의 서버 설치 없이 애플리케이션을 실행할 수 있다.(tomcat-embed-core, tomcat-embed-websocket, tomcat-embed-el 등 — 톰캣을 직접 포함해서 서버 역할 수행 가능)
+  - 내장 톰캣: Spring Boot는 내장 톰캣을 제공하여 별도의 서버 설치 없이 애플리케이션을 실행할 수 있다.(tomcat-embed-core, tomcat-embed-websocket, tomcat-embed-el 등 — 톰캣을 직접 포함해서 서버 역할 수행 가능)  
+
+
+- `.jar` 파일을 실행하면 내장 톰캣이 시작되고, 애플리케이션이 실행된다.
+  - `java -jar your-application.jar` 명령어로 실행할 수 있다.(java -jar .\target\helloSpringBoot-0.0.1-SNAPSHOT.jar)
+  - 내장 톰캣이 애플리케이션을 호스팅하고, HTTP 요청을 처리한다.
+  - 애플리케이션은 지정된 포트(기본적으로 8080)에서 실행된다.
