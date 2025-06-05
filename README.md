@@ -1,6 +1,14 @@
 # SpringRepo_Week11
 SpringBoot outline
 
+-  `.\mvnw.cmd clean package` 명령어를 실행한다.  
+  - `mvnw`는 Maven Wrapper로, Maven이 설치되어 있지 않은 환경에서도 Maven 명령어를 실행할 수 있게 해준다.  
+  - `clean`은 이전 빌드 결과물을 삭제하고, `package`는 프로젝트를 빌드하여 `.jar` 파일을 생성한다.
+  - `package`는 프로젝트를 빌드하고, `.jar` 파일을 생성하는 단계로, 다음 3가지 작업을 한번에 수행한다.  
+    - `compile`: 소스 코드를 컴파일하여 바이트코드로 변환한다.
+    - `test`: 테스트 코드를 실행하여 기능 검증을 진행한다.
+    - `package`: 컴파일된 코드와 리소스를 `.jar` 파일로 패키징한다.
+
 - `.java` 소스코드를 컴파일하여 `.class` 바이트코드로 변환한다.  
 
 - 테스트 코드를 실행해 기능 검증을 진행한다.(단위 테스트)
