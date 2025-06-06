@@ -77,6 +77,7 @@
                 <!--jar파일로 패키징 + jar 파일 실행시키는데 쓰이는 플러그인 -->
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
+                    <!-- 롬복은 컴파일 당시에 필요한거지 런타임에서는 필요없기에 패키징할때 롬복은 제외시킴 -->
                     <excludes>
                         <exclude>
                             <groupId>org.projectlombok</groupId>
