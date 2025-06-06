@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<!--prefix는 th -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Hello World</title>
 </head>
 <body>
-    <h1>Hello, World!!</h1>
+<!--모델에 있는 message라는 이름의 속성을 이 div 바디안에 대치-->
+    <div th:text="${message}"></div>
 </body>
 </html>
