@@ -1,4 +1,4 @@
-# SpringRepo_Week11: SpringBoot outline
+# SpringRepo_Week12: First SpringBoot Application
 
 -  `.\mvnw.cmd clean package` 명령어를 실행한다.  
   - `mvnw`는 Maven Wrapper로, Maven이 설치되어 있지 않은 환경에서도 Maven 명령어를 실행할 수 있게 해준다.  
