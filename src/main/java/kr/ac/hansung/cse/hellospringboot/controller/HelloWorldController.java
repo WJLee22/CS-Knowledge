@@ -1,8 +1,9 @@
 package kr.ac.hansung.cse.hellospringboot.controller;
 
+import kr.ac.hansung.cse.hellospringboot.configuration.MyConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,19 +11,28 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class HelloWorldController {
 
-    @Value("${app.professor}")
+/*    @Value("${app.professor}")
     private String professor;
 
     @Value("${app.courseName}")
-    private String courseName;
+    private String courseName;*/
+
+    // configuration패키지의 MyConfiguration 클래스에 @ConfigurationProperties 어노테이션이 붙어있어 빈으로 등록되어 있다. 그걸 의존성 주입 받는다.
+    @Autowired
+    private MyConfiguration myConfiguration;
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @GetMapping("/")
     public String sayHello(Model model) {
-
+/*
         logger.debug("professor: {}", professor);
         logger.debug("courseName: {}", courseName);
+*/
+        logger.debug("professor: {}", myConfiguration.getProfessor());
+        logger.debug("courseName: {}", myConfiguration.getCourseName());
+
+        model.addAttribute("appConfig", myConfiguration);
 
         model.addAttribute("message", "Hello, Spring Boot!");
         // 이 메서드는 / 요청이 들어오면 index.html 파일을 반환한다.
