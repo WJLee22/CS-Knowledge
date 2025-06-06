@@ -1,5 +1,8 @@
 package kr.ac.hansung.cse.hellospringboot.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,8 +10,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class HelloWorldController {
 
+    @Value("${app.professor}")
+    private String professor;
+
+    @Value("${app.courseName}")
+    private String courseName;
+
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
     @GetMapping("/")
     public String sayHello(Model model) {
+
+        logger.debug("professor: {}", professor);
+        logger.debug("courseName: {}", courseName);
+
         model.addAttribute("message", "Hello, Spring Boot!");
         // 이 메서드는 / 요청이 들어오면 index.html 파일을 반환한다.
         // index.html 파일은 src/main/resources/templates 폴더에 있어야 한다. 타임리프는 템플릿 엔진이니깐.
