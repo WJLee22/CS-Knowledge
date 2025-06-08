@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--빈을 일일히 등록하기보다는 kr.ac.hansung.cse.dao 패키지를 스캔해서 자동으로 빈들을 생성해주는ㅇㅇ  -->
+    <context:component-scan base-package="kr.ac.hansung.cse.dao" />
+
+    <context:property-placeholder
+            location="/WEB-INF/props/jdbc.properties" />
+
+    <!--BasicDataSource의 경우엔 외부에서 가져오는거라 소스코드가 이 앱에는 없기에, 이 xml에서 태그로 빈 등록해줘야함 -->
+    <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"
+          destroy-method="close">
+        <property name="driverClassName" value="${jdbc.driverClassName}" />
+        <property name="url" value="${jdbc.url}" />
+        <property name="username" value="${jdbc.username}" />
+        <property name="password" value="${jdbc.password}" />
+    </bean>
+
+</beans>
