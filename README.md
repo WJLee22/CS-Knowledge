@@ -1,5 +1,5 @@
 # 🎓 컴퓨터공학 CS Knowledge 저장소
 
-### 📚 OOP with JAVA 튜터활동, 디자인 패턴, 시스템프로그래밍, 네트워크프로그래밍 등
+### 📚 WebFramework(Spring), OOP with JAVA 튜터활동, 디자인 패턴, 시스템프로그래밍, 네트워크프로그래밍 등
 
 ### 📂 각 항목별 디렉터리로 구성
