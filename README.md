@@ -3,7 +3,7 @@
 
 <br>
 
-### 📚 WebFramework(Spring), OOP with JAVA 튜터활동, 디자인 패턴, 시스템프로그래밍, 네트워크프로그래밍 등
+### 📚 WebFramework(Spring & SpringBoot), OOP with JAVA 튜터활동, 디자인 패턴, 시스템프로그래밍, 네트워크프로그래밍 등
 
 <br>
 
