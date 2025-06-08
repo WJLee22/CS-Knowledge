@@ -1,0 +1,24 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Malgun Gothic', Arial, sans-serif;
+    background-color: #f0f4f8;
+}
+
+.home-icon {
+    position: absolute;
+    top: 40px;
+    left: 50px;
+}
+
+.home-icon img {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.3));
+    transition: transform 0.3s;
+}
+
+.home-icon img:hover {
+    transform: scale(1.1);
+}
