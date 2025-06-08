@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+         http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+
+    <!-- The definition of the Root Spring Container shared by all Servlets
+        and Filters -->
+    <!-- DispatcherServlet은 servlet-context.xml을 읽어들이고,
+         ContextLoaderListener는 root-context.xml & dao-context.xml & service-context.xml을 읽어들이고 그xml들이 실행되겠지
+     -->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>
+            /WEB-INF/spring/root-context.xml
+            <!--ContextLoaderListener가 추가로 dao-context.xml & service-context.xml을 읽어들이도록 함. 그러면 dao-context.xml & service-context.xml에 작성된대로 dao & service 패키지 내의 클래스들을 스캔하여 자동으로 빈들을 생성하겠지  -->
+            /WEB-INF/spring/appServlet/dao-context.xml
+            /WEB-INF/spring/appServlet/service-context.xml
+        </param-value>
+    </context-param>
+
+    <!-- Creates the Spring Container shared by all Servlets and Filters -->
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+    <!-- Processes application requests -->
+    <!--과정 총정리 -->
+    <!-- 1. DispatcherServlet이 servlet-context.xml파일을 읽어들임 -->
+    <!-- 2. servlet-context.xml파일에서는 kr.ac.hansung.cse.controller패키지를 스캔하여 @Controller가 붙은 클래스들을 빈으로 생성해서 스프링 컨테이너에 넣어줌 -->
+    <!-- 이 예제에서는 kr.ac.hansung.cse.controller패키지안의 HomeController 클래스가 @Controller가 붙었으므로 HomeController클래스를 빈으로 생성하고 컨테이너에 넣음 -->
+    <!-- 3. 추후에 클라이언트로부터 get방식으로/ 루트경로 요청이오면 HomeController클래스의 @GetMapping어노테이션이 붙은 메서드가 호출-실행됨 -->
+    <!-- 4. @GetMapping어노테이션이 붙은 메서드가 실행되면 Model객체에 데이터(객체)를 담고(모델 객체안에 모델Attribute로써 객체가 저장됨), return문에 적힌 logical View, 즉 해당 이름의 뷰에게 Model을 넘겨주면서 해당 뷰를 호출함  -->
+    <!-- 5. 해당 뷰는 모델안의 데이터를 이용하여 view(HTML)를 동적으로 생성후 클라이언트에게 응답으로 전달!-->
+    <servlet>
+        <servlet-name>appServlet</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>/WEB-INF/spring/appServlet/servlet-context.xml</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>appServlet</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
+</web-app>
