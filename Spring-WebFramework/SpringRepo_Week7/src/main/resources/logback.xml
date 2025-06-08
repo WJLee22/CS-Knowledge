@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>TRACE</level>
+        </filter>
+    </appender>
+
+    <appender name="DAILY_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/rest-demo.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--dd: 일별로 새로 로그 파일이 생성되고 그 파일로 로그 출력 타겟이 변경됨. 하루 지나면 로깅파일이름 뒤에 해당 날짜가 붙을거임  -->
+            <fileNamePattern>logs/rest-demo.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <!--최대 30일동안 기록. 30일이 지나면 지움 -->
+            <maxHistory>30</maxHistory>
+            <cleanHistoryOnStart>true</cleanHistoryOnStart>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{35} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <!--additivity="false": 루트 로거의 appender를 상속받지 않음. -->
+    <!-- kr.ac.hansung 및 자식 로거들은 로그메시지를 콘솔과 파일에 둘다 기록함. -->
+    <logger name="kr.ac.hansung" level="DEBUG" additivity="false">
+        <appender-ref ref="DAILY_FILE"/>
+        <appender-ref ref="CONSOLE"/>
+    </logger>
+
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+    </root>
+</configuration>
