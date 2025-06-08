@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/extras/spring-security">
+<!-- 인증상태에 따라서 컨텐츠를 보여줄지 말지 컨트롤 by SpringSecurityDialect 객체-->
+<!-- Tyhmeleaf에서 Spring Security를 통합 by SpringSecurityDialect -->
+<head>
+    <title>SpringBoot Security</title>
+</head>
+
+<body>
+<h2> 안녕하세요. 스프링 부트 보안 사이트에 오신 것을 환영합니다 </h2>
+
+<!-- 인증이 되어있느냐. 되어있으면 div 엘리먼트 렌더링 ㅇㅇ -->
+<div sec:authorize="isAuthenticated()">
+    <!-- 인증 후, 인증된 유저의 유저이름을 출력 -->
+    <p>Welcome <span sec:authentication="principal.username">User</span></p>
+    <!-- <p><a th:href="@{/logout}">Logout</a></p>-->
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="LogOut"/>
+    </form>
+
+    <!-- 관리자 권한이 있으면 -->
+    <div sec:authorize="hasRole('ROLE_ADMIN')">
+        <h3>You will see this only if you are ADMIN</h3>
+        <p><a th:href="@{/admin/home}">Admin Home</a></p>
+    </div>
+
+    Authenticated user roles:
+    <!-- 인증이 되어있으면 -->
+    <div sec:authorize="isAuthenticated()">
+        <div th:each="authority : ${#authentication.authorities}">
+            <span th:text="${authority.getAuthority()}">[Authority]</span>
+        </div>
+    </div>
+</div>
+
+<!-- 인증이 되어있지않다면 로그인하라는 의미에서 login URL로 리다이렉트시킴 -->
+<div sec:authorize="isAnonymous()">
+    <p><a th:href="@{/login}">LogIn</a></p>
+</div>
+
+</body>
+</html>
