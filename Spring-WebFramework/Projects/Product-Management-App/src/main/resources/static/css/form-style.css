@@ -1,0 +1,30 @@
+/* 유효성 검증 오류 메시지 스타일 */
+.error {
+    color: #ff0000;
+    font-size: 15px;
+    margin-top: 5px;
+    font-weight: bold;
+}
+
+/* 폼 필드 스타일 */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    margin-bottom: 10px;
+    color: #1976d2;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    position: relative;
+    padding-left: 12px;
+    border-left: 3px solid #1976d2;
+}
+
+/* 폼 입력 필드 스타일 */
+.form-control:focus {
+    border-color: #1976d2;
+    box-shadow: 0 0 8px rgba(25, 118, 210, 0.2);
+    outline: none;
+}
