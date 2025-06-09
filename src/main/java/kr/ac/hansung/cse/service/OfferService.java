@@ -24,7 +24,20 @@ public class OfferService {
         return offerDao.getOffers();
     }
 
+    public Offer getOfferById(int id) {
+        // DAO를 호출하여 DB에서 특정 ID의 오퍼를 가져온다.
+        return offerDao.getOffer(id);
+    }
+
     public void insertOffer(Offer offer) {
         offerDao.insert(offer);
+    }
+
+    public void updateOffer(Offer offer) {
+        offerDao.update(offer);
+    }
+
+    public void deleteOfferById(int id) {
+        offerDao.delete(id);
     }
 }
