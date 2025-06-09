@@ -1,5 +1,7 @@
 package kr.ac.hansung.cse.controller;
 
+import jakarta.servlet.http.HttpServletRequest;
+import kr.ac.hansung.cse.exception.OfferNotFoundException;
 import kr.ac.hansung.cse.model.Offer;
 import kr.ac.hansung.cse.service.OfferService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.http.*;
+import kr.ac.hansung.cse.model.ErrorResponse;
 
 import java.net.URI;
 import java.util.List;
@@ -97,7 +100,6 @@ public class OfferRestController {
         offerService.deleteOfferById(id);
         return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
     }
-
 
 
 }
