@@ -16,6 +16,13 @@ import lombok.ToString;
 @Entity
 @Table(name = "offers") // offers라는 이름의 DB 테이블로 매핑
 public class Offer {
+
+    public Offer(String name, String email, String text) {
+        this.name = name;
+        this.email = email;
+        this.text = text;
+    }
+    
     @Id // 기본키
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto Increment 자동 증가
     private int id;
