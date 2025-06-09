@@ -120,4 +120,6 @@ Spring Boot & Spring Security 기반으로, 사용자 권한별로 기능 접근
 <br>
 
 ## ✅ Dependencies Setting
-![image](https://github.com/user-attachments/assets/7d34c63d-42d4-47bb-bfba-4c968f3d1a79)
+<img src="https://github.com/user-attachments/assets/178fbc4b-f553-4778-9f70-90647ce6c342" width="600"/>
+
+<br>
