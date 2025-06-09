@@ -10,3 +10,7 @@
 ### 📂 각 항목별 디렉터리로 구성
 
 <br>
+
+### 🔗 **네트워크프로그래밍 레포지토리 주소:**  [https://github.com/WJLee22/Java-NetworkProgramming](https://github.com/WJLee22/Java-NetworkProgramming)  
+
+<br>
